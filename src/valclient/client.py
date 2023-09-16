@@ -1115,3 +1115,10 @@ class Client:
                 return dict(zip(keys, data))
         except:
             raise LockfileError("Lockfile not found")
+    
+    def fetch_swagger(self) -> dict:
+        data = self.fetch(endpoint="/swagger/v3/openapi.json", endpoint_type="local")
+        return data
+    def fetch_name_by_puuid(self, list_of_puuid: dict) -> dict:
+        data = self.put(endpoint="/name-service/v2/players", endpoint_type="shared", json_data=list_of_puuid)
+        return data
